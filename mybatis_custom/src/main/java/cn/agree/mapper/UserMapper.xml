@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+
+
+<mapper namespace="cn.agree.mapper.UserMapper">
+    <!--findAll-->
+    <select id="findAll" resultType="cn.agree.domain.User">
+        SELECT * FROM  user
+    </select>
+</mapper>
+
