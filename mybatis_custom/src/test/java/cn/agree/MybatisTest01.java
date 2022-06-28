@@ -58,6 +58,9 @@ public class MybatisTest01 {
         *
         * */
         UserMapper userMapper = sqlSession.getMapper(UserMapper.class);
+
+        System.out.println("获取的代理对象userMapper:"+userMapper);
+        userMapper.findAll();
         List<User> users = userMapper.findAll();
 
         for (User user : users) {

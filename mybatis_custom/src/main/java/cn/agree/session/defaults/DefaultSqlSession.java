@@ -4,6 +4,8 @@ import cn.agree.mapper.UserMapper;
 import cn.agree.session.Configuration;
 import cn.agree.session.SqlSession;
 import cn.agree.session.mapper.Mapper;
+import cn.agree.session.proxy.MapperProxyHandler;
+import cn.agree.session.utils.Converter;
 
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
@@ -35,12 +37,8 @@ public class DefaultSqlSession implements SqlSession {
         * */
         return (T) Proxy.newProxyInstance(clazz.getClassLoader(),
                 new Class[]{clazz},
-                new InvocationHandler() {
-                    @Override
-                    public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
-                        return null;
-                    }
-                });
+                new MapperProxyHandler(this)
+                );
     }
 
     @Override
@@ -52,6 +50,8 @@ public class DefaultSqlSession implements SqlSession {
             // 获取Connection对象
             Connection connection = cfg.getConnection();
 
+            System.out.println("SqlSession的list()中获取连接:"+connection);
+
             // 获取sql语句
             String sql = mapper.getSql();
 
@@ -61,8 +61,14 @@ public class DefaultSqlSession implements SqlSession {
             // 执行查询
             ResultSet resultSet = stm.executeQuery();
 
+           /* while (resultSet.next()) {
+                System.out.println(resultSet.getString("username"));
+            }*/
 
-        } catch (SQLException e) {
+           return Converter.list(resultSet, Class.forName(mapper.getResultType()));
+
+
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return null;
