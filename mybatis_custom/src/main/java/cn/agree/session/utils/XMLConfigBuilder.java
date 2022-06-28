@@ -2,6 +2,7 @@ package cn.agree.session.utils;
 
 import cn.agree.io.Resources;
 import cn.agree.session.Configuration;
+import cn.agree.session.defaults.DefaultSqlSession;
 import cn.agree.session.mapper.Mapper;
 import org.dom4j.Attribute;
 import org.dom4j.Document;
@@ -53,7 +54,7 @@ public class XMLConfigBuilder {
                 }
             }
 
-            System.out.println("获取的连接:"+cfg.getConnection());
+            // System.out.println("获取的连接:"+cfg.getConnection());
 
             // 解析完基础的部分, 要来解析包含的xxxMapper.xml
             List<Element> mapperList = document.selectNodes("//mapper");
@@ -72,6 +73,8 @@ public class XMLConfigBuilder {
                 }
 
             }
+
+            System.out.println("获取的完整的cfg:"+cfg);
 
             return cfg;
         } catch (Exception e) {
@@ -107,7 +110,7 @@ public class XMLConfigBuilder {
                 String  id = element.attributeValue("id");
                 String sql = element.getText();
                 String resultType = element.attributeValue("resultType");
-                System.out.println("解析具体的Map:"+id+"--"+sql+"--"+resultType);
+                // System.out.println("解析具体的Map:"+id+"--"+sql+"--"+resultType);
                 Mapper mapper = new Mapper(sql, resultType);
                 // key = namespace+.+id
                 mappers.put(namespace+"."+id, mapper);
@@ -125,7 +128,7 @@ public class XMLConfigBuilder {
 
         InputStream is = Resources.getResourceAsStream("SqlMapConfig.xml");
         // System.out.println(is);
-        loadConfiguration(is);
+        // loadConfiguration(is);
 
     }
 }

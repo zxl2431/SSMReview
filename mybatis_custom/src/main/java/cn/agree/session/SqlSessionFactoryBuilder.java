@@ -1,5 +1,7 @@
 package cn.agree.session;
 
+import cn.agree.session.defaults.DefaultSqlSessionFactory;
+
 import java.io.InputStream;
 
 public class SqlSessionFactoryBuilder {
@@ -10,7 +12,12 @@ public class SqlSessionFactoryBuilder {
     *
     * */
     public SqlSessionFactory build(InputStream is) {
-        return null;
+        // 创建一个SqlSessionFactory
+        DefaultSqlSessionFactory sqlSessionFactory = new DefaultSqlSessionFactory();
+        // 存储主配置文件
+        sqlSessionFactory.setIs(is);
+
+        return sqlSessionFactory;
     }
 
 }

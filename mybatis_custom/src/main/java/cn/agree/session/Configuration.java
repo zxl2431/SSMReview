@@ -83,7 +83,6 @@ public class Configuration {
     }
 
 
-
     @Override
     public String toString() {
         return "Configuration{" +
@@ -92,6 +91,7 @@ public class Configuration {
                 ", username='" + username + '\'' +
                 ", password='" + password + '\'' +
                 ", dataSource=" + dataSource +
+                ", mappers=" + mappers +
                 '}';
     }
 

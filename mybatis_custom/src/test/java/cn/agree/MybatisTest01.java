@@ -35,6 +35,8 @@ public class MybatisTest01 {
         * */
         SqlSessionFactory sqlSessionFactory = builder.build(is);
 
+        System.out.println("获取的sqlSessionFactory的对象是:"+sqlSessionFactory);
+
         // Factory构建一个session
         /*
         *  工厂模式
@@ -43,6 +45,7 @@ public class MybatisTest01 {
         *  工厂模式能够降低耦合度
         *
         * */
+        // 在这一步加载配置文件
         SqlSession sqlSession = sqlSessionFactory.openSession();
 
         // 通过sqlSession实现增删改查
