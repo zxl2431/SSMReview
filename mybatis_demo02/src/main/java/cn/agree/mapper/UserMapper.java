@@ -1,5 +1,6 @@
 package cn.agree.mapper;
 
+import cn.agree.domain.QueryVo;
 import cn.agree.domain.User;
 
 import java.util.List;
@@ -32,6 +33,16 @@ public interface UserMapper {
     *  模糊查询
     * */
     List<User> findUserByUsername(String username);
+
+    /*
+    *  根据用户名查询用户
+    * */
+    User findByVo(QueryVo vo);
+
+    /*
+    *  查询总数
+    * */
+    int findUserCount();
 
 
 }

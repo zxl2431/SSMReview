@@ -42,6 +42,15 @@
         SELECT * FROM user WHERE username LIKE '${value}'
     </select>
 
+    <!--根据用户名查用户-->
+    <select id="findByVo" parameterType="cn.agree.domain.QueryVo" resultType="cn.agree.domain.User">
+        SELECT * FROM user where username=#{user.username}
+    </select>
+
+    <!--简单类型-->
+    <select id="findUserCount" resultType="Integer">
+        SELECT COUNT(*) FROM user;
+    </select>
 
 
 

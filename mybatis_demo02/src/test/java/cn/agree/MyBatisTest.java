@@ -1,5 +1,6 @@
 package cn.agree;
 
+import cn.agree.domain.QueryVo;
 import cn.agree.domain.User;
 import cn.agree.mapper.UserMapper;
 import org.apache.ibatis.io.Resources;
@@ -89,6 +90,29 @@ public class MyBatisTest {
         for (User user : users) {
             System.out.println(user);
         }
+    }
+
+    /*
+    * ognl表达式
+    * 类中类的情况
+    * */
+    @Test
+    public void testFindByVo() {
+        QueryVo vo = new QueryVo();
+        User user = new User();
+        user.setUsername("东方不败");
+        vo.setUser(user);
+        User userInfo = userMapper.findByVo(vo);
+        System.out.println(userInfo);
+    }
+
+    /*
+    *  查询总数
+    * */
+    @Test
+    public void testFindUserCount() {
+        int userCount = userMapper.findUserCount();
+        System.out.println(userCount);
     }
 
 
