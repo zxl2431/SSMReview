@@ -28,6 +28,11 @@ public interface UserMapper {
     * */
     int deleteUser(Integer id);
 
+    /*
+    *  模糊查询
+    * */
+    List<User> findUserByUsername(String username);
+
 
 }
 

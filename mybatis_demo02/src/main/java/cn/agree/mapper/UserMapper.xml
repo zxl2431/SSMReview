@@ -31,10 +31,18 @@
         UPDATE user SET username=#{username},birthday=#{birthday},sex=#{sex},address=#{address} WHERE id=#{id}
     </update>
 
-    <!-- 删除用户-->
+    <!--删除用户-->
     <delete id="deleteUser" parameterType="java.lang.Integer">
         DELETE FROM user WHERE id=#{id}
     </delete>
+
+    <!--模糊查询-->
+    <select id="findUserByUsername" parameterType="string" resultType="cn.agree.domain.User">
+        <!-- SELECT * FROM user WHERE username LIKE #{username} -->
+        SELECT * FROM user WHERE username LIKE '${value}'
+    </select>
+
+
 
 
 </mapper>

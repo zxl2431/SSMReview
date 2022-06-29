@@ -78,6 +78,19 @@ public class MyBatisTest {
         userMapper.deleteUser(2);
     }
 
+    /*
+    *  模糊查询用户
+    * */
+    @Test
+    public void testFindUserByUsername() {
+        // String name = "%张%";
+        String name = "%张%";
+        List<User> users = userMapper.findUserByUsername(name);
+        for (User user : users) {
+            System.out.println(user);
+        }
+    }
+
 
     @After
     public void destory() {

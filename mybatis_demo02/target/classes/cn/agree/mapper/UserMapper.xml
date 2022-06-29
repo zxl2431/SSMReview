@@ -9,5 +9,41 @@
     <select id="findAll" resultType="cn.agree.domain.User">
         SELECT * FROM  user
     </select>
+
+    <!--添加用户-->
+    <insert id="saveUser" parameterType="cn.agree.domain.User">
+        <!--
+            keyColum: 要查询的自增列的列名
+            keyProperty: 将返回值赋值给User对象的id属性
+            resultType: 返回值的类型
+            order: 表示selectKey里面里面的SQL和外面的SQL语句执行顺序
+                AFTER: 外面SQL先执行
+                BEFORE: selectkey里面的先执行
+        -->
+        <selectKey keyColumn="id" keyProperty="id" resultType="java.lang.Integer" order="AFTER">
+            SELECT  LAST_INSERT_ID()
+        </selectKey>
+        INSERT INTO user(username,birthday,sex,address)VALUES(#{username},#{birthday},#{sex},#{address})
+    </insert>
+
+    <!--修改用户-->
+    <update id="updateUser" parameterType="cn.agree.domain.User">
+        UPDATE user SET username=#{username},birthday=#{birthday},sex=#{sex},address=#{address} WHERE id=#{id}
+    </update>
+
+    <!--删除用户-->
+    <delete id="deleteUser" parameterType="java.lang.Integer">
+        DELETE FROM user WHERE id=#{id}
+    </delete>
+
+    <!--模糊查询-->
+    <select id="findUserByUsername" parameterType="string" resultType="cn.agree.domain.User">
+        <!-- SELECT * FROM user WHERE username LIKE #{username} -->
+        SELECT * FROM user WHERE username LIKE '${value}'
+    </select>
+
+
+
+
 </mapper>
 
