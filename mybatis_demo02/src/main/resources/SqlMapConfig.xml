@@ -19,7 +19,8 @@
 
     <!-- 加载映射文件 这里还不能用.的方式只能用/的方式-->
     <mappers>
-        <mapper resource="cn/agree/mapper/UserMapper.xml"/>
-        <!--<mapper resource="cn/agree/mapper/TestMapper.xml"/>-->
+        <!--<mapper resource="cn/agree/mapper/UserMapper.xml"/>-->
+        <!--<mapper class="cn.agree.mapper.UserMapper" />-->
+        <package name="cn.agree.mapper" />
     </mappers>
 </configuration>
