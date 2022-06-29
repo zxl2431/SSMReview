@@ -42,7 +42,31 @@
         SELECT * FROM user WHERE username LIKE '${value}'
     </select>
 
+    <!-- UserResultMap -->
+    <resultMap id="UserResultMap" type="cn.agree.domain.User">
+        <id column="id_" property="id" />
+        <result column="username_" property="username" />
+        <result column="birthday_" property="birthday" />
+        <result column="sex_" property="sex" />
+        <result column="address_" property="address" />
+    </resultMap>
 
+    <!--根据用户名查用户-->
+    <select id="findByVo" parameterType="cn.agree.domain.QueryVo" resultMap="UserResultMap">
+        <!-- SELECT * FROM user where username=#{user.username} -->
+        SELECT id id_,username username_ ,birthday birthday_ ,sex sex_ ,address address_  FROM  user WHERE username = #{user.username}
+    </select>
+
+    <!--简单类型-->
+    <select id="findUserCount" resultType="Integer">
+        SELECT COUNT(*) FROM user;
+    </select>
+
+    <!--根据ID查询-->
+    <!--根据id查询-->
+    <select id="findByUserId" parameterType="java.lang.Integer" resultType="cn.agree.domain.User">
+        SELECT * FROM user WHERE id=#{id}
+    </select>
 
 
 </mapper>
