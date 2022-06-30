@@ -51,6 +51,11 @@
         <result column="address_" property="address" />
     </resultMap>
 
+    <!--定义SQL片段-->
+    <sql id="selectUserTable">
+         SELECT id, username, birthday, sex, address FROM USER
+    </sql>
+
     <!--根据用户名查用户-->
     <select id="findByVo" parameterType="cn.agree.domain.QueryVo" resultType="cn.agree.domain.User">
         SELECT id, username, birthday, sex, address from USER WHERE 1=1
@@ -75,7 +80,7 @@
 
     <!--findByRang-->
     <select id="findByRang" parameterType="cn.agree.domain.QueryVo" resultType="cn.agree.domain.User">
-        SELECT id, username, birthday, sex, address FROM USER
+        <include refid="selectUserTable" />
         <where>
             <if test="ids!=null and ids.size>0">
                 <foreach collection="ids" item="id" close=")" open="AND id IN (" separator=",">
@@ -84,6 +89,10 @@
             </if>
         </where>
     </select>
+
+
+    <!---->
+
 
 </mapper>
 
