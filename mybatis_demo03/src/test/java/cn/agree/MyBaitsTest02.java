@@ -2,6 +2,7 @@ package cn.agree;
 
 import cn.agree.domain.Account;
 import cn.agree.domain.AccountCustomer;
+import cn.agree.domain.User;
 import cn.agree.mapper.AccountMapper;
 import cn.agree.mapper.UserMapper;
 import org.apache.ibatis.io.Resources;
@@ -46,6 +47,14 @@ public class MyBaitsTest02 {
         List<Account> accountList2 = accountMapper.findAccountList2();
         for (Account account : accountList2) {
             System.out.println(account);
+        }
+    }
+
+    @Test
+    public void testFindUserAccountList() {
+        List<User> users = userMapper.findUserAccountList();
+        for (User user: users) {
+            System.out.println(user);
         }
     }
 
