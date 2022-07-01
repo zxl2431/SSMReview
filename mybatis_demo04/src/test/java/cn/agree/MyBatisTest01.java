@@ -69,6 +69,18 @@ public class MyBatisTest01 {
     }
 
 
+    /*
+    * Mybatis的一级缓存
+    * */
+    @Test
+    public void testCache1() {
+        User user = sqlSession.selectOne("cn.agree.mapper.UserMapper.findByUserId", 1);
+        User user1 = sqlSession.selectOne("cn.agree.mapper.UserMapper.findByUserId", 1);
+        System.out.println(user);
+        System.out.println(user1);
+    }
+
+
     @After
     public void destory() {
         sqlSession.commit();
