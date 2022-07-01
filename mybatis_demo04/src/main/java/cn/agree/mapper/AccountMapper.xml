@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="cn.agree.mapper.AccountMapper">
+
+
+
+    <!--一对一映射-->
+    <resultMap id="accountMap" type="cn.agree.domain.Account">
+        <id column="id" property="id" />
+        <result column="money" property="money" />
+        <result column="uid" property="uid" />
+
+        <!--一对一映射关系配置-->
+        <association property="user" javaType="cn.agree.domain.User">
+            <result column="username" property="username" />
+            <result column="address" property="address" />
+        </association>
+    </resultMap>
+
+
+    <select id="findAccountList2" resultMap="accountMap">
+        SELECT
+	    account1.*,
+	    user.`username`,
+	    user.`address`
+      FROM account1, USER
+      WHERE account1.`uid` = user.`id`
+    </select>
+
+    <!--只查账户 findAccounts-->
+    <resultMap id="accountLazyUser" type="cn.agree.domain.Account">
+        <id column="id" property="id" />
+        <result column="money" property="money" />
+        <result column="uid" property="uid"/>
+
+        <!--
+            select:调用指定查询节点
+            column: 调用指定查询时 将当前查询出的某列的结果作为参数传递进去
+        -->
+        <association property="user" select="cn.agree.mapper.UserMapper.findByUserId" column="uid"></association>
+    </resultMap>
+
+    <select id="findAccounts" resultMap="accountLazyUser">
+        select * from account1
+    </select>
+
+</mapper>
