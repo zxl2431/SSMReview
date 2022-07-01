@@ -2,8 +2,10 @@ package cn.agree;
 
 import cn.agree.domain.Account;
 import cn.agree.domain.AccountCustomer;
+import cn.agree.domain.Role;
 import cn.agree.domain.User;
 import cn.agree.mapper.AccountMapper;
+import cn.agree.mapper.RoleMapper;
 import cn.agree.mapper.UserMapper;
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
@@ -22,6 +24,7 @@ public class MyBaitsTest02 {
     private SqlSession sqlSession;
     private UserMapper userMapper;
     private AccountMapper accountMapper;
+    private RoleMapper roleMapper;
 
     @Before
     public void init() throws IOException {
@@ -32,6 +35,7 @@ public class MyBaitsTest02 {
         sqlSession = sqlSessionFactory.openSession();
         userMapper = sqlSession.getMapper(UserMapper.class);
         accountMapper = sqlSession.getMapper(AccountMapper.class);
+        roleMapper = sqlSession.getMapper(RoleMapper.class);
     }
 
     @Test
@@ -55,6 +59,15 @@ public class MyBaitsTest02 {
         List<User> users = userMapper.findUserAccountList();
         for (User user: users) {
             System.out.println(user);
+        }
+    }
+
+
+    @Test
+    public void testFindRoleUserList() {
+        List<Role> roles = roleMapper.findRoleUserList();
+        for (Role role : roles) {
+            System.out.println(role);
         }
     }
 
