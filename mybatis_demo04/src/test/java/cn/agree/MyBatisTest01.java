@@ -33,12 +33,38 @@ public class MyBatisTest01 {
         accountMapper = sqlSession.getMapper(AccountMapper.class);
     }
 
+    /*
+    *  一对一的延迟加载
+    *
+    * */
     @Test
     public void testFindAccounts() {
         List<Account> accounts = accountMapper.findAccounts();
 
         for (Account account : accounts) {
             System.out.println(account.getMoney()+"---"+account.getUser());
+        }
+    }
+
+    /*
+    *  一对多的延迟加载
+    *
+    * */
+    @Test
+    public void testFindAll() {
+        List<User> users = userMapper.findAll();
+
+        for (User user : users) {
+            System.out.println(user);
+        }
+
+    }
+
+    @Test
+    public void testFindAllUser() {
+        List<User> users = userMapper.findAll();
+        for (User user : users) {
+            System.out.println(user);
         }
     }
 

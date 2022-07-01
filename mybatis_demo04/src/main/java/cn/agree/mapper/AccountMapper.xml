@@ -47,4 +47,9 @@
         select * from account1
     </select>
 
+
+    <!--根据Id查Account-->
+    <select id="findAccountsByUid" parameterType="Integer" resultType="cn.agree.domain.Account">
+        select * from Account1 where uid = #{uid}
+    </select>
 </mapper>
