@@ -4,14 +4,71 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans
         http://www.springframework.org/schema/beans/spring-beans.xsd">
 
+
     <!--
         bean标签: 用于配置让spring创建对象,并且存入ioc容器之中
         id属性: 对象的唯一标识
         class属性: 指定要创建对象的全限定类名
     -->
-    <!-- 配置service -->
-    <bean id="accountService" class="cn.agree.service.impl.AccountServiceImpl"
-    scope="singleton" init-method="init" destroy-method="destory"></bean>
+    <bean id="date" class="java.util.Date"></bean>
+
+    <!-- 配置service 通过构造方法-->
+   <!-- <bean id="accountService" class="cn.agree.service.impl.AccountServiceImpl" scope="singleton" init-method="init" destroy-method="destory">
+        <constructor-arg name="name" value="张三"></constructor-arg>
+        <constructor-arg name="age" value="18"></constructor-arg>
+        <constructor-arg name="birthday" ref="date"></constructor-arg>
+    </bean>-->
+
+    <!--配置service 通过set方法-->
+    <bean id="accountService" class="cn.agree.service.impl.AccountServiceImpl">
+        <property name="name" value="test"></property>
+        <property name="age" value="21"></property>
+        <property name="birthday" ref="date"></property>
+        <!--给数组注入数据-->
+        <property name="myStrs">
+            <set>
+                <value>AAA</value>
+                <value>BBB</value>
+                <value>CCC</value>
+            </set>
+        </property>
+
+        <!--给List注入数据-->
+        <property name="myList">
+            <list>
+                <value>AAA</value>
+                <value>BBB</value>
+                <value>CCC</value>
+            </list>
+        </property>
+
+        <!-- 注入set集合数据 -->
+        <property name="mySet">
+            <list>
+                <value>AAA</value>
+                <value>BBB</value>
+                <value>CCC</value>
+            </list>
+        </property>
+
+        <!--给Map注入数据-->
+        <property name="myMap">
+            <map>
+                <entry key="testA" value="aaa"></entry>
+                <entry key="testB" value="bbb"></entry>
+            </map>
+        </property>
+
+        <!--给properties注入数据-->
+        <property name="myProps">
+            <props>
+                <prop key="testC">ccc</prop>
+                <prop key="testD">ddd</prop>
+            </props>
+        </property>
+    </bean>
+
+
 
     <!-- 配置dao -->
     <bean id="accountDao" class="cn.agree.dao.impl.AccountDaoImpl"></bean>
