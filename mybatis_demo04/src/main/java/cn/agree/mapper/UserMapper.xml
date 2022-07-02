@@ -6,6 +6,9 @@
 
 <mapper namespace="cn.agree.mapper.UserMapper">
 
+    <!--配置对应的缓存-->
+    <cache />
+
     <resultMap id="userLazyLoadAccountListResultMap" type="cn.agree.domain.User">
         <id column="id" property="id" />
         <result column="username" property="username" />
@@ -81,7 +84,7 @@
 
     <!--根据ID查询-->
     <!--根据id查询-->
-    <select id="findByUserId" parameterType="java.lang.Integer" resultType="cn.agree.domain.User">
+    <select id="findByUserId" parameterType="java.lang.Integer" useCache="true" resultType="cn.agree.domain.User">
         SELECT * FROM user WHERE id=#{id}
     </select>
 

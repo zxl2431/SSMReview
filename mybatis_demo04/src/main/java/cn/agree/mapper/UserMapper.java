@@ -50,6 +50,11 @@ public interface UserMapper {
     // List<User> findByRang(QueryVo queryVo);
 
 
+    /*
+    *  根据ID查找
+    *
+    * */
+    User findByUserId(int id);
 
     /*
     * 一对多
