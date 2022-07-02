@@ -1,6 +1,8 @@
 package cn.agree;
 
+import cn.agree.domain.Account;
 import cn.agree.domain.User;
+import cn.agree.mapper.AccountMapper;
 import cn.agree.mapper.UserMapper;
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
@@ -18,6 +20,8 @@ import java.util.List;
 public class MyBatisTest01 {
 
     private UserMapper userMapper;
+    private AccountMapper accountMapper;
+
     private SqlSession sqlSession;
     private SqlSessionFactory sqlSessionFactory;
     private InputStream is;
@@ -30,6 +34,7 @@ public class MyBatisTest01 {
         sqlSessionFactory = builder.build(is);
         sqlSession = sqlSessionFactory.openSession();
         userMapper = sqlSession.getMapper(UserMapper.class);
+        accountMapper = sqlSession.getMapper(AccountMapper.class);
 
     }
 
@@ -84,6 +89,18 @@ public class MyBatisTest01 {
     public void testFindCount() {
         int count = userMapper.findCount();
         System.out.println(count);
+    }
+
+    /*
+    *  Account用户测试
+    *
+    * */
+    @Test
+    public void testAccountFindAll() {
+        List<Account> accounts = accountMapper.findAll();
+        for (Account account : accounts) {
+            System.out.println(account);
+        }
     }
 
     @After

@@ -1,9 +1,8 @@
 package cn.agree.mapper;
 
 import cn.agree.domain.User;
-import org.apache.ibatis.annotations.Delete;
-import org.apache.ibatis.annotations.Select;
-import org.apache.ibatis.annotations.Update;
+import org.apache.ibatis.annotations.*;
+import org.apache.ibatis.mapping.FetchType;
 
 import java.util.List;
 
@@ -24,8 +23,28 @@ public interface UserMapper {
     /*
     *  查询所有
     * */
-    @Select("select * from user")
-    List<User> findAll();
+   /* @Select("select * from user")
+    @Results(id = "UserResultMap", value = {
+            @Result(id = true, column = "id", property = "id"),
+            @Result(column = "id", property = "id"),
+            @Result(column = "username", property = "username"),
+            @Result(column = "birthday", property = "birthday"),
+            @Result(column = "sex", property = "sex"),
+            @Result(column = "address", property = "address")
+    })
+    List<User> findAll();*/
+
+   /*
+   *  查询所有
+   * */
+   @Select(value = "select * from user")
+   @Results(
+           @Result(column = "id", property = "accountList",
+                   many = @Many(select = "cn.agree.mapper.AccountMapper.findAccountListByUid",
+                   fetchType = FetchType.LAZY))
+   )
+   List<User> findAll();
+
 
     /*
     * 根据ID修改用户信息
