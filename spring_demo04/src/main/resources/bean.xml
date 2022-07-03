@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+	       			   http://www.springframework.org/schema/beans/spring-beans.xsd
+	       			   http://www.springframework.org/schema/aop
+	       			   http://www.springframework.org/schema/aop/spring-aop.xsd">
+
+    <!-- 告知spring创建容骑士要扫描的包 -->
+    <!--<context:component-scan base-package="cn.agree"></context:component-scan>-->
+
+    <!-- 配置QueryRunner -->
+    <bean id="runner" class="org.apache.commons.dbutils.QueryRunner">
+        <constructor-arg name="ds" ref="dataSource"></constructor-arg>
+    </bean>
+
+    <!--数据源实例-->
+    <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
+        <property name="driverClass" value="com.mysql.jdbc.Driver" />
+        <property name="jdbcUrl" value="jdbc:mysql://127.0.0.1:3306/db1" />
+        <property name="user" value="root" />
+        <property name="password" value="root" />
+    </bean>
+
+    <!-- 配置 service -->
+    <bean id="accountService" class="cn.agree.service.impl.AccountServiceImpl"></bean>
+
+    <!-- 配置通知类 -->
+    <bean id="logger" class="cn.agree.log.Logger"></bean>
+    <!-- 配置aop -->
+    <aop:config>
+        <!--配置切面-->
+        <aop:aspect id="logAdvice" ref="logger">
+            <!--配置前置通知-->
+            <aop:before method="printLog" pointcut="execution(* cn.agree.service.impl.*.*(..))" />
+        </aop:aspect>
+    </aop:config>
+
+</beans>
