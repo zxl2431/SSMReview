@@ -2,11 +2,13 @@ package cn.agree.dao.impl;
 
 import cn.agree.dao.AccountDao;
 import cn.agree.domain.Account;
+import cn.agree.utils.ConnectionUtil;
 import org.apache.commons.dbutils.QueryRunner;
 import org.apache.commons.dbutils.handlers.BeanHandler;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import java.sql.Connection;
 import java.sql.SQLException;
 
 @Repository("accountDao")
@@ -14,6 +16,9 @@ public class AccountDaoImpl implements AccountDao {
 
     @Autowired
     private QueryRunner queryRunner;
+
+    @Autowired
+    private ConnectionUtil connectionUtil;
 
 
     @Override
@@ -33,7 +38,7 @@ public class AccountDaoImpl implements AccountDao {
         String sql = "select * from account where name=?";
 
         try {
-            return queryRunner.query(sql, name, new BeanHandler<Account>(Account.class));
+            return queryRunner.query(connectionUtil.getThreadConnection(), sql, name, new BeanHandler<Account>(Account.class));
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -45,7 +50,7 @@ public class AccountDaoImpl implements AccountDao {
         String sql = "update account set balance=? where name=?";
 
         try {
-            return queryRunner.update(sql, account.getBalance(), account.getName());
+            return queryRunner.update(connectionUtil.getThreadConnection(), sql, account.getBalance(), account.getName());
         } catch (SQLException e) {
             e.printStackTrace();
         }
