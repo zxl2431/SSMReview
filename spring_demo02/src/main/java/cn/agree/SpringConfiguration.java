@@ -11,7 +11,7 @@ import javax.sql.DataSource;
 * */
 @Configuration
 @ComponentScan("cn.agree")
-@Import(JdbcConfig.class)
+@Import({JdbcConfig.class})
 public class SpringConfiguration {
 
     /*
