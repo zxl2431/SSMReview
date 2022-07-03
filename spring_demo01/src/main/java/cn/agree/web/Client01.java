@@ -15,7 +15,7 @@ public class Client01 {
 
         AccountService accountService = (AccountService) ac.getBean("accountService");
 
-        accountService.saveAccount();
+        // accountService.saveAccount();
     }
 
     @Test

@@ -10,7 +10,26 @@
         id属性: 对象的唯一标识
         class属性: 指定要创建对象的全限定类名
     -->
+    <!--配置日期类型的变量-->
     <bean id="date" class="java.util.Date"></bean>
+
+    <!--配置数据源-->
+    <bean class="com.mchange.v2.c3p0.ComboPooledDataSource" id="dataSource">
+        <property name="driverClass" value="com.mysql.jdbc.Driver" />
+        <property name="jdbcUrl" value="jdbc:mysql://127.0.0.1:3306/db1" />
+        <property name="user" value="root" />
+        <property name="password" value="root" />
+    </bean>
+
+    <!-- 配置QueryRunner -->
+    <bean class="org.apache.commons.dbutils.QueryRunner" id="runner" scope="prototype">
+        <constructor-arg name="ds" ref="dataSource" />
+    </bean>
+
+    <!-- 配置dao -->
+    <bean id="accountDao" class="cn.agree.dao.impl.AccountDaoImpl">
+        <property name="runner" ref="runner" />
+    </bean>
 
     <!-- 配置service 通过构造方法-->
    <!-- <bean id="accountService" class="cn.agree.service.impl.AccountServiceImpl" scope="singleton" init-method="init" destroy-method="destory">
@@ -21,6 +40,8 @@
 
     <!--配置service 通过set方法-->
     <bean id="accountService" class="cn.agree.service.impl.AccountServiceImpl">
+        <property name="accountDao" ref="accountDao" />
+
         <property name="name" value="test"></property>
         <property name="age" value="21"></property>
         <property name="birthday" ref="date"></property>
@@ -70,8 +91,7 @@
 
 
 
-    <!-- 配置dao -->
-    <bean id="accountDao" class="cn.agree.dao.impl.AccountDaoImpl"></bean>
+
 
 </beans>
 

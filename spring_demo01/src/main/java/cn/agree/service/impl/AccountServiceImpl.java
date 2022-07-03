@@ -2,6 +2,7 @@ package cn.agree.service.impl;
 
 import cn.agree.dao.AccountDao;
 import cn.agree.dao.impl.AccountDaoImpl;
+import cn.agree.domain.Account;
 import cn.agree.service.AccountService;
 
 import java.util.*;
@@ -18,7 +19,11 @@ public class AccountServiceImpl implements AccountService {
     private Map<String,String> myMap;
     private Properties myProps;
 
-    private AccountDao accountDao = new AccountDaoImpl();
+    private AccountDao accountDao;
+
+    public void setAccountDao(AccountDao accountDao) {
+        this.accountDao = accountDao;
+    }
 
     public AccountServiceImpl() {
     }
@@ -84,6 +89,31 @@ public class AccountServiceImpl implements AccountService {
     }
 
     @Override
+    public void save(Account account) {
+        accountDao.saveAccount(account);
+    }
+
+    @Override
+    public void update(Account account) {
+        accountDao.update(account);
+    }
+
+    @Override
+    public void delete(Integer accountId) {
+        accountDao.delete(accountId);
+    }
+
+    @Override
+    public Account findById(Integer accountId) {
+        return accountDao.findById(accountId);
+    }
+
+    @Override
+    public List<Account> findAll() {
+        return accountDao.findAll();
+    }
+
+   /* @Override
     public void saveAccount() {
         System.out.println("service层调用dao层");
         System.out.println(name+"-"+age+"-"+birthday);
@@ -93,5 +123,5 @@ public class AccountServiceImpl implements AccountService {
         System.out.println(myMap);
         System.out.println(myProps);
         accountDao.saveAccount();
-    }
+    }*/
 }
