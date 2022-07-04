@@ -28,12 +28,33 @@
 
     <!-- 配置通知类 -->
     <bean id="logger" class="cn.agree.log.Logger"></bean>
-    <!-- 配置aop -->
+
+
+    <!--
+        配置aop
+            aop:config
+        配置切面
+            aop:aspect
+        配置切点
+
+        配置通知
+
+    -->
     <aop:config>
         <!--配置切面-->
         <aop:aspect id="logAdvice" ref="logger">
+            <aop:pointcut id="savePointCut" expression="execution(* cn.agree.service.impl.*.*(..))" />
             <!--配置前置通知-->
             <aop:before method="printLog" pointcut="execution(* cn.agree.service.impl.*.*(..))" />
+
+            <!--最终通知-->
+            <aop:after method="afterLog" pointcut-ref="savePointCut" />
+
+            <!--后置通知-->
+            <aop:after-returning method="after" pointcut-ref="savePointCut" />
+
+            <!--异常通知-->
+            <aop:after-throwing method="error" pointcut-ref="savePointCut" />
         </aop:aspect>
     </aop:config>
 
