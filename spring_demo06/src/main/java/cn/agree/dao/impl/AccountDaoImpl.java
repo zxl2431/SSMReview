@@ -3,12 +3,16 @@ package cn.agree.dao.impl;
 import cn.agree.dao.AccountDao;
 import cn.agree.domain.Account;
 import cn.agree.domain.AccountRowMapper;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
+@Repository("accountDao")
 public class AccountDaoImpl implements AccountDao {
 
+    @Autowired
     private JdbcTemplate jdbcTemplate;
 
     public void setJdbcTemplate(JdbcTemplate jdbcTemplate) {

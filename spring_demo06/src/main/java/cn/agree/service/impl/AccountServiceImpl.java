@@ -3,9 +3,15 @@ package cn.agree.service.impl;
 import cn.agree.dao.AccountDao;
 import cn.agree.domain.Account;
 import cn.agree.service.AccountService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
+@Service("accountService")
+@Transactional
 public class AccountServiceImpl implements AccountService {
 
+    @Autowired
     private AccountDao accountDao;
 
     public void setAccountDao(AccountDao accountDao) {
@@ -27,11 +33,8 @@ public class AccountServiceImpl implements AccountService {
         target.setBalance(target.getBalance() + money);
         // 3.更新两个账户余额
         accountDao.updateAccount(source);
-        // int i=1/0;
+        int i=1/0;
         accountDao.updateAccount(target);
-
-
-
 
     }
 }
