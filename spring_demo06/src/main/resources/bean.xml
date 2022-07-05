@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+             http://www.springframework.org/schema/beans/spring-beans.xsd
+             http://www.springframework.org/schema/tx
+             http://www.springframework.org/schema/tx/spring-tx.xsd
+               http://www.springframework.org/schema/aop
+               http://www.springframework.org/schema/aop/spring-aop.xsd">
+
+    <!-- 配置数据源 -->
+    <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+        <property name="driverClassName" value="com.mysql.jdbc.Driver"></property>
+        <property name="url" value="jdbc:mysql:///db1"></property>
+        <property name="username" value="root"></property>
+        <property name="password" value="root"></property>
+    </bean>
+
+    <!-- jdbcTemplate配置 -->
+    <bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
+        <property name="dataSource" ref="dataSource"></property>
+    </bean>
+
+    <!-- 配置dao -->
+    <bean id="accountDao" class="cn.agree.dao.impl.AccountDaoImpl">
+        <property name="jdbcTemplate" ref="jdbcTemplate"></property>
+    </bean>
+
+    <!-- 配置service -->
+    <bean id="accountService" class="cn.agree.service.impl.AccountServiceImpl">
+        <property name="accountDao" ref="accountDao"></property>
+    </bean>
+
+    <!--配置一个事务管理器-->
+    <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <!-- 注入DataSource -->
+        <property name="dataSource" ref="dataSource"></property>
+    </bean>
+
+    <!-- 指定事务的管理方式 -->
+    <tx:advice id="txAdvice" transaction-manager="transactionManager">
+        <!-- 配置管理方式 -->
+        <!--
+            name="trans*": 所有以trans开始的方法
+            read-only="true": 只能读数据库数据 不能修改
+            issolation: 事务隔离级别
+            propagation: 事务的传播特性
+            timeout: 当前事务被执行事件
+            rollback-for: 发生异常, 就回滚事务
+        -->
+        <tx:attributes>
+            <tx:method name="trans*"
+                        isolation="DEFAULT"
+                        propagation="REQUIRED"
+                        timeout="60"
+                       rollback-for="java.lang.Exception"
+            />
+            <tx:method name="add*"
+                       isolation="DEFAULT"
+                       propagation="REQUIRED"
+                       timeout="60"
+                       rollback-for="java.lang.Exception" />
+
+            <tx:method name="*" read-only="true" />
+        </tx:attributes>
+    </tx:advice>
+
+    <!--
+        指定哪些方法参与事务
+    -->
+    <aop:config>
+        <!-- 指定切点 -->
+        <aop:pointcut id="transPointCut" expression="execution(* cn.agree.service.impl.*.*(..))" />
+        <!-- 通知配置 -->
+        <aop:advisor advice-ref="txAdvice" pointcut-ref="transPointCut" />
+    </aop:config>
+
+</beans>
