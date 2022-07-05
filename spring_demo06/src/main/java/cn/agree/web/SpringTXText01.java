@@ -2,12 +2,15 @@ package cn.agree.web;
 
 import cn.agree.domain.Account;
 import cn.agree.service.AccountService;
+
+import org.junit.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 public class SpringTXText01 {
 
-    public static void main(String[] args) {
+    @Test
+    public void testSpringTransactionXML() {
         ApplicationContext applicationContext = new ClassPathXmlApplicationContext("bean.xml");
         AccountService accountService = (AccountService) applicationContext.getBean("accountService");
 
@@ -21,8 +24,6 @@ public class SpringTXText01 {
 
         // 转账李四转给张三
         // accountService.transfer("李四", "张三", 50f);
-
-
-
     }
+
 }

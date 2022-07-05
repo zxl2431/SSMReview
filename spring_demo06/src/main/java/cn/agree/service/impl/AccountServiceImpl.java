@@ -27,7 +27,7 @@ public class AccountServiceImpl implements AccountService {
         target.setBalance(target.getBalance() + money);
         // 3.更新两个账户余额
         accountDao.updateAccount(source);
-        int i=1/0;
+        // int i=1/0;
         accountDao.updateAccount(target);
 
 
