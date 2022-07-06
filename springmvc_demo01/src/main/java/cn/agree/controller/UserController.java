@@ -53,6 +53,16 @@ public class UserController {
         return "success";
     }
 
+    /*
+    *  接受javaBean
+    *  javabean里面引用另外一个javaBean
+    * */
+    @RequestMapping(value = "/add5")
+    public String add5User(User user) {
+        System.out.println("用户" + user.getName() + "今年" + user.getAge() + "岁，住在" + user.getIdCard().getAddress() + ",身份证号是" + user.getIdCard().getNumber());
+        return "success";
+    }
+
 
 
 }
