@@ -1,11 +1,24 @@
 package cn.agree.domain;
 
+import java.util.List;
+
 public class User {
     private String name;
     private Integer age;
 
     // 引用IdCard作为子属性
     private IdCard idCard;
+
+    // 多个手机
+    private List<Mobile> mobiles;
+
+    public List<Mobile> getMobiles() {
+        return mobiles;
+    }
+
+    public void setMobiles(List<Mobile> mobiles) {
+        this.mobiles = mobiles;
+    }
 
     public String getName() {
         return name;
@@ -37,6 +50,7 @@ public class User {
                 "name='" + name + '\'' +
                 ", age=" + age +
                 ", idCard=" + idCard +
+                ", mobiles=" + mobiles +
                 '}';
     }
 }

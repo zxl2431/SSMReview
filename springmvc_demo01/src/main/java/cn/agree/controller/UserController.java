@@ -1,5 +1,6 @@
 package cn.agree.controller;
 
+import cn.agree.domain.Mobile;
 import cn.agree.domain.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -59,9 +60,26 @@ public class UserController {
     * */
     @RequestMapping(value = "/add5")
     public String add5User(User user) {
-        System.out.println("用户" + user.getName() + "今年" + user.getAge() + "岁，住在" + user.getIdCard().getAddress() + ",身份证号是" + user.getIdCard().getNumber());
+        System.out.println("用户" + user.getName() + ",今年" + user.getAge() + "岁，住在" + user.getIdCard().getAddress() + ",身份证号是:" + user.getIdCard().getNumber());
+        System.out.println(user);
         return "success";
     }
+
+    /*
+    *  接受javaBean
+    *  javaBean里面引用另外一个javaBean的List
+    * */
+    @RequestMapping(value = "/add6")
+    public String add6User(User user) {
+        System.out.println("用户" + user.getName() + ",今年" + user.getAge() + "岁，住在" + user.getIdCard().getAddress() + ",身份证号是" + user.getIdCard().getNumber());
+        for (Mobile mobile : user.getMobiles()) {
+            System.out.println(mobile.getMobileName()+"花了"+mobile.getPrice());
+        }
+        System.out.println("------------");
+        System.out.println(user);
+        return "success";
+    }
+
 
 
 
