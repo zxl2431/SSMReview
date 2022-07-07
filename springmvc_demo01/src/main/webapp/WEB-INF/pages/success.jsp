@@ -12,5 +12,10 @@
 </head>
 <body>
     <h3>入门成功</h3>
+    ${msg}
+    <hr/>
+    ${pageContext.request.contextPath}
+    <hr/>
+    ${requestScope}
 </body>
 </html>
