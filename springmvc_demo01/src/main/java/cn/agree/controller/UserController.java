@@ -6,6 +6,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -77,6 +78,12 @@ public class UserController {
         }
         System.out.println("------------");
         System.out.println(user);
+        return "success";
+    }
+
+    @RequestMapping(value = "/date")
+    public String data(Date date) {
+        System.out.println(date);
         return "success";
     }
 
