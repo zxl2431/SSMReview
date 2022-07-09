@@ -33,6 +33,7 @@ public class AddressController {
     @RequestMapping(value = "/add")
     public String add(@RequestBody String body) {
         System.out.println(body);
+        // int i = 1/0;
         return "success";
     }
 
@@ -112,10 +113,13 @@ public class AddressController {
     *
     * */
     @RequestMapping(value = "/fileUpload1")
-    public String fileUpload1(HttpServletRequest request, MultipartFile upload) throws IOException {
+    public String fileUpload1(HttpServletRequest request, MultipartFile upload) throws Exception {
         System.out.println("SpringMVC方式的文件上传");
         // 先获取到要上传的文件目录
         String path = request.getSession().getServletContext().getRealPath("/uploads1");
+        System.out.println(path);
+        // 整一个异常
+        int i = 1/0;
         File file = new File(path);
         if (!file.exists()) {
             file.mkdirs();
