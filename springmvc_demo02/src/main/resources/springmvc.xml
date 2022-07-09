@@ -50,5 +50,17 @@
     <!-- 异常处理 -->
     <bean class="cn.agree.Exception.ExceptionHandler"></bean>
 
+    <!-- 配置拦截器 -->
+    <mvc:interceptors>
+        <mvc:interceptor>
+            <!-- 哪些方法拦截 -->
+            <mvc:mapping path="/address/*"/>
+            <!-- 哪些方法不拦截 -->
+            <!--<mvc:exclude-mapping path=""/>-->
+            <!-- 注册拦截器对象 -->
+            <bean class="cn.agree.Interceptor.MyInterceptor1"/>
+        </mvc:interceptor>
+    </mvc:interceptors>
+
 
 </beans>
