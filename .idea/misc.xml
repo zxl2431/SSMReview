@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="FrameworkDetectionExcludesConfiguration">
+    <file type="web" url="file://$PROJECT_DIR$/mybatis_demo02" />
+    <file type="web" url="file://$PROJECT_DIR$/springmvc_demo01" />
+    <file type="web" url="file://$PROJECT_DIR$/springmvc_demo02" />
+    <file type="web" url="file://$PROJECT_DIR$/ssm_demo01" />
+  </component>
+  <component name="MavenProjectsManager">
+    <option name="originalFiles">
+      <list>
+        <option value="$PROJECT_DIR$/mybatis_demo01/pom.xml" />
+        <option value="$PROJECT_DIR$/mybatis_custom/pom.xml" />
+        <option value="$PROJECT_DIR$/mybatis_demo02/pom.xml" />
+        <option value="$PROJECT_DIR$/mybatis_demo03/pom.xml" />
+        <option value="$PROJECT_DIR$/mybatis_demo04/pom.xml" />
+        <option value="$PROJECT_DIR$/mybatis_demo05/pom.xml" />
+        <option value="$PROJECT_DIR$/spring_demo01/pom.xml" />
+        <option value="$PROJECT_DIR$/spring_demo02/pom.xml" />
+        <option value="$PROJECT_DIR$/spring_demo03/pom.xml" />
+        <option value="$PROJECT_DIR$/spring_demo04/pom.xml" />
+        <option value="$PROJECT_DIR$/spring_demo05/pom.xml" />
+        <option value="$PROJECT_DIR$/spring_demo06/pom.xml" />
+        <option value="$PROJECT_DIR$/springmvc_demo01/pom.xml" />
+        <option value="$PROJECT_DIR$/springmvc_demo02/pom.xml" />
+        <option value="$PROJECT_DIR$/ssm_demo01/pom.xml" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectRootManager">
+    <output url="file://$PROJECT_DIR$/out" />
+  </component>
+</project>

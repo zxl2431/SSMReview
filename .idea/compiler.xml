@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="mybatis_custom" />
+        <module name="mybatis_demo01" />
+        <module name="mybatis_demo02" />
+        <module name="mybatis_demo03" />
+        <module name="mybatis_demo04" />
+        <module name="mybatis_demo05" />
+        <module name="spring_demo01" />
+        <module name="spring_demo02" />
+        <module name="spring_demo03" />
+        <module name="spring_demo04" />
+        <module name="spring_demo05" />
+        <module name="spring_demo06" />
+        <module name="springmvc_demo01" />
+        <module name="springmvc_demo02" />
+        <module name="ssm_demo01" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="mybatis-demo01" target="1.8" />
+      <module name="mybatis_custom" target="1.8" />
+      <module name="mybatis_demo01" target="1.8" />
+      <module name="mybatis_demo02" target="1.8" />
+      <module name="mybatis_demo03" target="1.8" />
+      <module name="mybatis_demo04" target="1.8" />
+      <module name="mybatis_demo05" target="1.8" />
+      <module name="spring_demo01" target="1.8" />
+      <module name="spring_demo02" target="1.8" />
+      <module name="spring_demo03" target="1.8" />
+      <module name="spring_demo04" target="1.8" />
+      <module name="spring_demo05" target="1.8" />
+      <module name="spring_demo06" target="1.8" />
+      <module name="springmvc_demo01" target="1.8" />
+      <module name="springmvc_demo02" target="1.8" />
+      <module name="ssm_demo01" target="1.8" />
+    </bytecodeTargetLevel>
+  </component>
+</project>
