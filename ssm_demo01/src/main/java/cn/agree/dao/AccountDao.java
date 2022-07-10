@@ -12,7 +12,7 @@ public interface AccountDao {
     *  保存账户
     *
     * */
-    @Insert("insert into account(name, money) values(#{name}, #{money})")
+    @Insert("insert into account(name, balance) values(#{name}, #{balance})")
     int saveAccount(Account account);
 
     /*

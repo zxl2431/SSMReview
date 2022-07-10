@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: zhangxianlin
@@ -11,6 +12,11 @@
     <title>账户列名</title>
 </head>
 <body>
-    把所有的账户列一个表
+    <h3>查询到的数据</h3>
+    <c:forEach items="${accounts}" var="account">
+        ${account.id}
+        ${account.name}
+        ${account.balance} <br/>
+    </c:forEach>
 </body>
 </html>
